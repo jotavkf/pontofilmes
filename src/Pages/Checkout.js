@@ -13,7 +13,7 @@ function Checkout() {
     if (carrinho.length === 0) {
       navigate("/");
     }
-  }, [carrinho]);
+  }, [carrinho, navigate]);
 
   const handleRemoveCarrinho = (id) => {
     setCarrinho((prev) => {
@@ -28,8 +28,6 @@ function Checkout() {
       }, []);
     });
   };
-
-  console.log(carrinho);
 
   return (
     <div>
