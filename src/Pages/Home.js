@@ -1,30 +1,65 @@
 import Card from "../Components/Card";
 import Cart from "../Components/Cart";
+import Favs from "../Components/Favs";
 import { useState, useEffect } from "react";
 import Navbar from "../Components/Navbar.js";
 import axios from "axios";
+import { Toaster } from "react-hot-toast";
+import { toast } from "react-hot-toast";
 
 function Home() {
   const [filmes, setFilmes] = useState([]);
   const [render, setRender] = useState(true);
   const [filmesCarrinho, setFilmesCarrinho] = useState([]);
+  const [filmesFavs, setFilmesFavs] = useState([]);
   const [isVisibleCart, setIsVisibleCart] = useState(false);
+  const [isVisibleFavs, setIsVisibleFavs] = useState(false);
+
+  async function fetchFilmes() {
+    try {
+      const result = await axios.get(
+        `https://api.themoviedb.org/3/movie/popular?api_key=fa812ced39c01ea176a7307b834faa7d&language=pt-BR&page=1`
+      );
+      setFilmes(result.data.results);
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   useEffect(() => {
-    async function fetchFilmes() {
-      try {
-        const result = await axios.get(
-          `https://api.themoviedb.org/3/movie/popular?api_key=fa812ced39c01ea176a7307b834faa7d&language=en-US&page=1`
-        );
-        setFilmes(result.data.results);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-
     fetchFilmes();
     setRender(false);
   }, [render]);
+
+  const handleAddFavs = (filme) => {
+    setFilmesFavs((prev) => {
+      const findFilmeInCart = prev.find((item) => item.id === filme.id);
+
+      if (findFilmeInCart) {
+        return prev.map((item) =>
+          item.id === filme.id
+            ? { ...item, amount: item.amount + 1, price: 79 } // Integrando um valor aleatório ao adicionar no carrinho dado que a API não entrega um preço
+            : item
+        );
+      }
+
+      return [...prev, { ...filme, amount: 1, price: 79 }];
+    });
+  };
+
+  const handleRemoveFavs = (id) => {
+    setFilmesFavs((prev) => {
+      return prev.reduce((cal, item) => {
+        if (item.id === id) {
+          if (item.amount === 1) return cal;
+
+          return [...cal, { ...item, amount: item.amount - 1 }];
+        }
+
+        return [...cal, { ...item }];
+      }, []);
+    });
+  };
 
   const handleAddCarrinho = (filme) => {
     setFilmesCarrinho((prev) => {
@@ -61,7 +96,12 @@ function Home() {
       <Navbar
         filmesCarrinho={filmesCarrinho}
         setIsVisibleCart={setIsVisibleCart}
+        setIsVisibleFavs={setIsVisibleFavs}
+        setFilmes={setFilmes}
+        fetchFilmes={fetchFilmes}
+        toast={toast}
       />
+      <Toaster />
       <div className='relative h-full bg-slate-300'>
         <div className='flex flex-wrap justify-center'>
           {filmes.map((filme) => {
@@ -70,6 +110,8 @@ function Home() {
                 key={filme.id}
                 filme={filme}
                 handleAddCarrinho={handleAddCarrinho}
+                handleAddFavs={handleAddFavs}
+                toast={toast}
               />
             );
           })}
@@ -80,6 +122,16 @@ function Home() {
               filmesCarrinho={filmesCarrinho}
               handleAddCarrinho={handleAddCarrinho}
               handleRemoveCarrinho={handleRemoveCarrinho}
+              toast={toast}
+            />
+          )}
+          {isVisibleFavs && (
+            <Favs
+              setIsVisibleFavs={setIsVisibleFavs}
+              filmesFavs={filmesFavs}
+              handleAddCarrinho={handleAddCarrinho}
+              handleRemoveFavs={handleRemoveFavs}
+              toast={toast}
             />
           )}
         </div>

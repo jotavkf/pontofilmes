@@ -13,14 +13,15 @@ function Carrinho({
   handleAddCarrinho,
   handleRemoveCarrinho,
 }) {
+  const navigate = useNavigate();
+
   const img_API = `https://image.tmdb.org/t/p/w300`;
+
   const soma = (arr) => {
     return arr.reduce((cal, item) => {
       return cal + item.price * item.amount;
     }, 0);
   };
-
-  const navigate = useNavigate();
 
   return (
     <div

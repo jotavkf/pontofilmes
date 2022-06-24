@@ -14,7 +14,7 @@ function carrinhoFinal({ carrinho, handleRemoveCarrinho }) {
       {carrinho.map((filme) => (
         <div
           key={filme.id}
-          className='m-4 p-4 bg-white rounded-md text-center border-b-[3px] h-auto w-full flex flex-row items-center justify-between'
+          className='m-4 p-4 bg-white rounded-md text-center border-b-[3px] h-auto w-full flex flex-col items-center md:flex-row md:justify-between'
         >
           <img
             className='h-[70px]'
@@ -39,6 +39,12 @@ function carrinhoFinal({ carrinho, handleRemoveCarrinho }) {
           </div>
         </div>
       ))}
+      <p className='font-semibold'>
+        Total:
+        <span className='font-bold text-amber-500 ml-5'>
+          R$ {soma(carrinho)}
+        </span>
+      </p>
     </div>
   );
 }

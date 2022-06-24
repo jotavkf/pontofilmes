@@ -1,5 +1,5 @@
-import { useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 import Form from "../Components/Form";
 import CarrinhoFinal from "../Components/CarrinhoFinal";
 import { Toaster } from "react-hot-toast";
@@ -7,6 +7,13 @@ import { Toaster } from "react-hot-toast";
 function Checkout() {
   const { state } = useLocation();
   const [carrinho, setCarrinho] = useState(state);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (carrinho.length === 0) {
+      navigate("/");
+    }
+  }, [carrinho]);
 
   const handleRemoveCarrinho = (id) => {
     setCarrinho((prev) => {
