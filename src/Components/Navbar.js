@@ -75,7 +75,7 @@ function Navbar({
       <div className=' inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0'>
         <button
           type='button'
-          className='id="menu-button" aria-expanded="true" aria-haspopup="true" mr-4 bg-gray-100 p-1 rounded-full text-gray-500 hover:text-gray-300 focus:outline-none focus:ring-white transition duration-300 ease-in-out'
+          className='sm:hidden id="menu-button" aria-expanded="true" aria-haspopup="true" mr-4 bg-gray-100 p-1 rounded-full text-gray-500 hover:text-gray-300 focus:outline-none focus:ring-white transition duration-300 ease-in-out'
         >
           <SearchIcon
             className='h-6 w-6 hover:animate-pulse'
