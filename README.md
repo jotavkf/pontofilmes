@@ -9,4 +9,4 @@ Ponto filmes é um protótipo de uma loja de filmes. A ideia do projeto foi conc
 >- Melhorar responsividade do checkout no mobile.
 
 
-> [Deploy do projeto](https://pontofilmes.netlify.app/)
+##### [Deploy do projeto](https://pontofilmes.netlify.app/)
