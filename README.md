@@ -5,6 +5,7 @@ Ponto filmes é um protótipo de uma loja de filmes. A ideia do projeto foi conc
 > #### Lista de coisas a serem implementadas:
 >
 >- Searchbar no Mobile;
+>- Tag de cores nas avaliações
 >- Aperfeiçoamento do formulário de checkout, com máscaras e alerts para mal preenchimento;
 >- Melhorar responsividade do checkout no mobile;
 >- Página específica para cada filme com mais detalhes.
