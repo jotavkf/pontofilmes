@@ -6,7 +6,8 @@ Ponto filmes é um protótipo de uma loja de filmes. A ideia do projeto foi conc
 >
 >- Searchbar no Mobile;
 >- Aperfeiçoamento do formulário de checkout, com máscaras e alerts para mal preenchimento;
->- Melhorar responsividade do checkout no mobile.
+>- Melhorar responsividade do checkout no mobile;
+>- Página específica para cada filme com mais detalhes.
 
 
 ##### [Deploy do projeto](https://pontofilmes.netlify.app/)
