@@ -10,29 +10,27 @@ function carrinhoFinal({ cart, handleRemoveCart }) {
 	};
 
 	return (
-		<div>
+		<div className='divide-y-4 md:divide-x-4'>
 			{cart.map((filme) => (
 				<div
 					key={filme.id}
-					className='m-4 p-4 bg-white rounded-md text-center border-b-[3px] h-auto w-full flex flex-col items-center md:flex-row md:justify-between'>
+					className='p-3 bg-white rounded-md text-center h-full w-full flex flex-col items-center md:flex-row'>
 					<img
-						className='h-[70px]'
+						className='mt-3 h-[70px]'
 						src={img_API + filme.poster_path}
 						alt={filme.title}
 					/>
-					<div className='container flex flex-col pt-2 items-center'>
-						<h3 className='font-sans font-light text-sm text-center'>
+					<div className='p-6 flex flex-col w-full items-center md:space-evenly md:flex-row'>
+						<h3 className='m-1 font-sans font-light text-sm text-center'>
 							{filme.title}
 						</h3>
-						<p className='font-semibold tracking-wider text-amber-400'>
+						<p className='m-2 font-semibold tracking-wider text-amber-400'>
 							R$ {filme.price}
 						</p>
-					</div>
-					<div className='flex items-center'>
 						<button onClick={() => handleRemoveCart(filme.id)}>
-							<TrashIcon className='h-5 w-5' />
+							<TrashIcon className='m-2 h-5 w-5' />
 						</button>
-						<h4 className='ml-2 text-lg text-slate-100 font-regular w-7 h-7 bg-sky-600 rounded-lg'>
+						<h4 className='text-lg text-slate-100 font-regular w-8 bg-sky-600 rounded-lg'>
 							{filme.amount}
 						</h4>
 					</div>
@@ -40,7 +38,7 @@ function carrinhoFinal({ cart, handleRemoveCart }) {
 			))}
 			<p className='font-semibold'>
 				Total:
-				<span className='font-bold text-amber-500 ml-5'>R$ {soma(cart)}</span>
+				<span className='font-bold text-amber-500 ml-1 '>R$ {soma(cart)}</span>
 			</p>
 		</div>
 	);

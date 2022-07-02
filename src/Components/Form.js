@@ -1,15 +1,17 @@
-import { Formik, Form, Field } from 'formik';
-import toast from 'react-hot-toast';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useNavigate } from 'react-router-dom';
+import { CheckoutSchema } from './FormSchema';
+import toast from 'react-hot-toast';
 
 function FormCheckout({ cart, setCart }) {
 	const navigate = useNavigate();
 
+	const formStyle =
+		'relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-indigo-600 rounded-md focus:outline-none focus:ring-indigo-500 focus:z-10 focus:border-indigo-500 bg-white';
+
 	return (
-		<div className=' max-w-md justify-between w-full space-y-8'>
+		<div className='max-w-3xl justify-between w-full space-y-8'>
 			<Formik
-				validateOnChange={true}
-				validateOnBlur={true}
 				initialValues={{
 					nomeCompleto: '',
 					cpf: '',
@@ -20,9 +22,11 @@ function FormCheckout({ cart, setCart }) {
 					cidade: '',
 					estado: '',
 				}}
+				validationSchema={CheckoutSchema}
 				onSubmit={async function (values) {
 					try {
-						console.log(values, cart); //Onde deveria ser o grandioso POST;
+						let objCheckout = { dados: values, carrinho: cart };
+						console.log(JSON.stringify(objCheckout, null, 2)); //Onde deveria ser o grandioso POST;
 						toast.custom((t) => (
 							<div
 								className={`${
@@ -30,14 +34,15 @@ function FormCheckout({ cart, setCart }) {
 								} max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5`}>
 								<div className='flex-1 w-0 p-4'>
 									<div className='flex items-start'>
-										<div className='flex-shrink-0 pt-0.5'></div>
-										<div className='ml-3 flex-1'>
-											<p className='text-sm font-medium text-gray-900'>
-												Obrigado {values.nomeCompleto}
-											</p>
-											<p className='mt-1 text-sm text-gray-500'>
-												Sua compra foi finalizada com sucesso!
-											</p>
+										<div className='flex-shrink-0 pt-0.5'>
+											<div className='ml-3 flex-1'>
+												<p className='text-sm font-medium text-gray-900'>
+													Obrigado {values.nomeCompleto}
+												</p>
+												<p className='mt-1 text-sm text-gray-500'>
+													Sua compra foi finalizada com sucesso!
+												</p>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -62,70 +67,83 @@ function FormCheckout({ cart, setCart }) {
 				<Form className='mt-4'>
 					<div className='rounded-md shadow-sm space-y-3 my-6'>
 						<Field
-							id='nomeCompleto'
 							name='nomeCompleto'
 							placeholder='Nome completo'
-							type='text'
 							required={true}
-							className='relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-indigo-600 rounded-md focus:outline-none focus:ring-indigo-500 focus:z-10 focus:border-indigo-500 bg-white'
+							className={formStyle}
+						/>
+						<ErrorMessage
+							name='nomeCompleto'
+							component='span'
+							className='text-red-500 text-xs italic'
 						/>
 						<Field
-							id='cpf'
 							name='cpf'
 							placeholder='CPF'
-							type='text'
 							required={true}
-							className='relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-indigo-600 rounded-md focus:outline-none focus:ring-indigo-500 focus:z-10 focus:border-indigo-500 bg-white'
+							className={formStyle}
+						/>
+						<ErrorMessage
+							name='cpf'
+							component='span'
+							className='text-red-500 text-xs italic'
 						/>
 						<Field
-							id='telefone'
 							name='telefone'
 							placeholder='Telefone para contato'
 							required={true}
-							className='relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-indigo-600 rounded-md focus:outline-none focus:ring-indigo-500 focus:z-10 focus:border-indigo-500 bg-white'
+							className={formStyle}
+						/>
+						<ErrorMessage
+							name='telefone'
+							component='span'
+							className='text-red-500 text-xs italic'
 						/>
 						<Field
-							id='email'
 							name='email'
 							placeholder='E-mail'
-							type='email'
 							required={true}
-							className='relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-indigo-600 rounded-md focus:outline-none focus:ring-indigo-500 focus:z-10 focus:border-indigo-500 bg-white'
+							className={formStyle}
+						/>
+						<ErrorMessage
+							name='email'
+							component='span'
+							className='text-red-500 text-xs italic'
 						/>
 						<Field
-							id='cep'
 							name='cep'
 							placeholder='CEP'
 							required={true}
-							className='relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-indigo-600 rounded-md focus:outline-none focus:ring-indigo-500 focus:z-10 focus:border-indigo-500 bg-white'
+							className={formStyle}
+						/>
+						<ErrorMessage
+							name='cep'
+							component='span'
+							className='text-red-500 text-xs italic'
 						/>
 						<Field
-							id='endereco'
 							name='endereco'
 							placeholder='Endereço'
 							required={true}
-							className='relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-indigo-600 rounded-md focus:outline-none focus:ring-indigo-500 focus:z-10 focus:border-indigo-500 bg-white'
+							className={formStyle}
 						/>
 						<Field
-							id='cidade'
 							name='cidade'
 							placeholder='Cidade'
 							required={true}
-							className='relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-indigo-600 rounded-md focus:outline-none focus:ring-indigo-500 focus:z-10 focus:border-indigo-500 bg-white'
+							className={formStyle}
 						/>
 						<Field
-							id='estado'
 							name='estado'
 							placeholder='Estado'
 							required={true}
-							className='relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-indigo-600 rounded-md focus:outline-none focus:ring-indigo-500 focus:z-10 focus:border-indigo-500 bg-white'
+							className={formStyle}
 						/>
 					</div>
-
 					<div>
 						<button
 							type='submit'
-							className='group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-amber-500 hover:bg-amber-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500'>
+							className='group relative w-full py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-amber-500 hover:bg-amber-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-300'>
 							Comprar
 						</button>
 					</div>
