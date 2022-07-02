@@ -1,17 +1,18 @@
+import axios from 'axios';
+import { useState, useEffect, useContext } from 'react';
+import { Toaster } from 'react-hot-toast';
+import { toast } from 'react-hot-toast';
+import { CartContext } from '../Contexts/CartContext';
 import Card from '../Components/Card';
 import Cart from '../Components/Cart';
 import Favs from '../Components/Favs';
-import { useState, useEffect } from 'react';
 import Navbar from '../Components/Navbar.js';
-import axios from 'axios';
-import { Toaster } from 'react-hot-toast';
-import { toast } from 'react-hot-toast';
 import Searchbar from '../Components/Searchbar';
 
 function Home() {
+	const { cart, handleAddCart } = useContext(CartContext);
 	const [filmes, setFilmes] = useState([]);
 	const [render, setRender] = useState(true);
-	const [filmesCarrinho, setFilmesCarrinho] = useState([]);
 	const [filmesFavs, setFilmesFavs] = useState([]);
 	const [isVisibleCart, setIsVisibleCart] = useState(false);
 	const [isVisibleFavs, setIsVisibleFavs] = useState(false);
@@ -63,46 +64,15 @@ function Home() {
 		});
 	};
 
-	const handleAddCarrinho = (filme) => {
-		setFilmesCarrinho((prev) => {
-			const findFilmeInCart = prev.find((item) => item.id === filme.id);
-
-			if (findFilmeInCart) {
-				return prev.map((item) =>
-					item.id === filme.id
-						? { ...item, amount: item.amount + 1, price: 79 } // Integrando um valor aleatório ao adicionar no carrinho dado que a API não entrega um preço
-						: item
-				);
-			}
-
-			return [...prev, { ...filme, amount: 1, price: 79 }];
-		});
-	};
-
-	const handleRemoveCarrinho = (id) => {
-		setFilmesCarrinho((prev) => {
-			return prev.reduce((cal, item) => {
-				if (item.id === id) {
-					if (item.amount === 1) return cal;
-
-					return [...cal, { ...item, amount: item.amount - 1 }];
-				}
-
-				return [...cal, { ...item }];
-			}, []);
-		});
-	};
-
 	return (
 		<div>
 			<Navbar
-				filmesCarrinho={filmesCarrinho}
+				cart={cart}
 				setIsVisibleCart={setIsVisibleCart}
 				setIsVisibleFavs={setIsVisibleFavs}
 				setIsVisibleSearch={setIsVisibleSearch}
 				setFilmes={setFilmes}
 				fetchFilmes={fetchFilmes}
-				toast={toast}
 			/>
 			<Toaster />
 			<div className='relative h-full bg-slate-300'>
@@ -112,9 +82,8 @@ function Home() {
 							<Card
 								key={filme.id}
 								filme={filme}
-								handleAddCarrinho={handleAddCarrinho}
+								handleAddCart={handleAddCart}
 								handleAddFavs={handleAddFavs}
-								toast={toast}
 							/>
 						);
 					})}
@@ -132,10 +101,7 @@ function Home() {
 					{isVisibleCart && (
 						<Cart
 							setIsVisibleCart={setIsVisibleCart}
-							setFilmesCarrinho={setFilmesCarrinho}
-							filmesCarrinho={filmesCarrinho}
-							handleAddCarrinho={handleAddCarrinho}
-							handleRemoveCarrinho={handleRemoveCarrinho}
+							cart={cart}
 							toast={toast}
 						/>
 					)}
@@ -143,9 +109,8 @@ function Home() {
 						<Favs
 							setIsVisibleFavs={setIsVisibleFavs}
 							filmesFavs={filmesFavs}
-							handleAddCarrinho={handleAddCarrinho}
+							handleAddCart={handleAddCart}
 							handleRemoveFavs={handleRemoveFavs}
-							toast={toast}
 						/>
 					)}
 				</div>

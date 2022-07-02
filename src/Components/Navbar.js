@@ -10,14 +10,14 @@ import Searchbar from './Searchbar';
 function Navbar({
 	setIsVisibleCart,
 	setIsVisibleFavs,
-	filmesCarrinho,
+	setIsVisibleSearch,
+	cart,
 	setFilmes,
 	fetchFilmes,
-	setIsVisibleSearch,
 }) {
 	return (
 		<nav
-			className='container flex h-16 justify-between items-center font-poppins bg-gradient-to-r from-indigo-500 to-sky-500 mx-auto max-w-full sm: px-3'
+			className='flex h-16 justify-between items-center font-poppins bg-gradient-to-r from-indigo-500 to-sky-500 mx-auto max-w-full sm: px-3'
 			role='navigation'>
 			<div className='flex'>
 				<div className='flex-shrink-0 flex items-center'>
@@ -57,9 +57,7 @@ function Navbar({
 					className='flex ml-4 bg-gray-100 p-1 rounded-full text-amber-400 hover:text-amber-300 focus:outline-none focus:ring-white'
 					onClick={() => setIsVisibleCart(true)}>
 					<ShoppingCartIcon className='p-0.5 h-6 w-6' aria-hidden='true' />
-					{filmesCarrinho.length > 0 && (
-						<span className='px-2'>{filmesCarrinho.length}</span>
-					)}
+					{cart.length > 0 && <span className='px-2'>{cart.length}</span>}
 				</button>
 			</div>
 		</nav>
