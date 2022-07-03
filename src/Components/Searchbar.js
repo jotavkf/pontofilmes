@@ -31,25 +31,21 @@ function Searchbar({ setFilmes, fetchFilmes }) {
 		<form onSubmit={handleOnSubmit} className='relative'>
 			<input
 				type='search'
-				className='block w-full p-4 text-base font-normal text-gray-700 bg-white bg-clip-padding rounded-md border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none'
+				className='transition duration-500 ease-in-out hover:bg-slate-300 block w-full p-4 text-base font-normal text-gray-700 bg-white bg-clip-padding rounded-md border border-solid border-gray-300 focus:text-gray-700 focus:bg-slate-100 focus:border-indigo-700 focus:outline-none'
 				placeholder='Pesquise seu filme'
 				value={searchTerm}
 				onChange={handleOnChange}
 			/>
 			<button
 				type='submit'
-				className='text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'>
+				className='text-white absolute right-2.5 bottom-2.5 bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800'>
 				<svg
-					className='w-5 h-5 text-white'
+					className='w-5 h-5 text-white stroke-2'
 					fill='none'
 					stroke='currentColor'
 					viewBox='0 0 24 24'
 					xmlns='http://www.w3.org/2000/svg'>
-					<path
-						stroke-linecap='round'
-						stroke-linejoin='round'
-						stroke-width='2'
-						d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'></path>
+					<path d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'></path>
 				</svg>
 			</button>
 		</form>

@@ -4,13 +4,12 @@ import {
 	TrashIcon,
 } from '@heroicons/react/outline';
 import { useContext } from 'react';
-
 import { useNavigate } from 'react-router-dom';
 import { CartContext } from '../Contexts/CartContext';
 
-function Carrinho({ setIsVisibleCart, setCart, cart }) {
+function Carrinho({ setIsVisibleCart, cart }) {
 	const navigate = useNavigate();
-	const { handleAddCart, handleRemoveCart } = useContext(CartContext);
+	const { handleAddCart, handleRemoveCart, setCart } = useContext(CartContext);
 
 	const img_API = `https://image.tmdb.org/t/p/w300`;
 
@@ -72,7 +71,7 @@ function Carrinho({ setIsVisibleCart, setCart, cart }) {
 							</p>
 							<button
 								type='button'
-								className='motion-safe:animate-bounce w-full block mt-2 px-4 py-2 bg-sky-600 text-white font-medium text-xs leading-normal uppercase rounded shadow-md hover:bg-sky-700 hover:shadow-lg focus:bg-sky-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-sky-800 active:shadow-lg transition duration-150 ease-in-out flex justify-around align-center'
+								className='w-full block mt-2 px-4 py-2 bg-sky-600 text-white font-medium text-xs leading-normal uppercase rounded shadow-md hover:bg-sky-700 hover:shadow-lg focus:bg-sky-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-sky-800 active:shadow-lg transition duration-150 ease-in-out flex justify-around align-center'
 								onClick={() => navigate('/checkout')}>
 								Finalizar
 							</button>

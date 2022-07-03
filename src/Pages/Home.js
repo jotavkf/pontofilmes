@@ -65,7 +65,7 @@ function Home() {
 	};
 
 	return (
-		<div>
+		<div className='h-full bg-slate-300'>
 			<Navbar
 				cart={cart}
 				setIsVisibleCart={setIsVisibleCart}
@@ -73,47 +73,42 @@ function Home() {
 				setIsVisibleSearch={setIsVisibleSearch}
 				setFilmes={setFilmes}
 				fetchFilmes={fetchFilmes}
+				className='sticky top-0'
 			/>
 			<Toaster />
-			<div className='relative h-full bg-slate-300'>
-				<div className='flex flex-wrap justify-center items-center'>
-					{filmes.map((filme) => {
-						return (
-							<Card
-								key={filme.id}
-								filme={filme}
-								handleAddCart={handleAddCart}
-								handleAddFavs={handleAddFavs}
-							/>
-						);
-					})}
-					{isVisibleSearch && (
-						<div
-							className='fixed inset-0 backdrop-contrast-50 flex items-center align-center justify-center'
-							onClick={() => setIsVisibleSearch(false)}>
-							<div
-								className='bg-white w-[300px] overflow-y-scroll animate-fade-in'
-								onClick={(e) => e.stopPropagation()}>
-								<Searchbar setFilmes={setFilmes} fetchFilmes={fetchFilmes} />
-							</div>
-						</div>
-					)}
-					{isVisibleCart && (
-						<Cart
-							setIsVisibleCart={setIsVisibleCart}
-							cart={cart}
-							toast={toast}
-						/>
-					)}
-					{isVisibleFavs && (
-						<Favs
-							setIsVisibleFavs={setIsVisibleFavs}
-							filmesFavs={filmesFavs}
+			<div className='relative flex flex-wrap justify-center items-center'>
+				{filmes.map((filme) => {
+					return (
+						<Card
+							key={filme.id}
+							filme={filme}
 							handleAddCart={handleAddCart}
-							handleRemoveFavs={handleRemoveFavs}
+							handleAddFavs={handleAddFavs}
 						/>
-					)}
-				</div>
+					);
+				})}
+				{isVisibleSearch && (
+					<div
+						className='fixed inset-0 backdrop-contrast-50 flex items-center align-center justify-center'
+						onClick={() => setIsVisibleSearch(false)}>
+						<div
+							className='bg-white w-[300px] overflow-y-scroll animate-fade-in'
+							onClick={(e) => e.stopPropagation()}>
+							<Searchbar setFilmes={setFilmes} fetchFilmes={fetchFilmes} />
+						</div>
+					</div>
+				)}
+				{isVisibleCart && (
+					<Cart setIsVisibleCart={setIsVisibleCart} cart={cart} toast={toast} />
+				)}
+				{isVisibleFavs && (
+					<Favs
+						setIsVisibleFavs={setIsVisibleFavs}
+						filmesFavs={filmesFavs}
+						handleAddCart={handleAddCart}
+						handleRemoveFavs={handleRemoveFavs}
+					/>
+				)}
 			</div>
 		</div>
 	);

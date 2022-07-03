@@ -4,8 +4,14 @@ import toast from 'react-hot-toast';
 function Card({ filme, handleAddCart, handleAddFavs }) {
 	const img_API = `https://image.tmdb.org/t/p/w1280`;
 
+	let color;
+
+	if (filme.vote_average > 8) color = 'bg-green-700';
+	else if (filme.vote_average > 6) color = 'bg-orange-500';
+	else color = 'bg-red-700';
+
 	return (
-		<div className='group relative w-60 m-2 bg-sky-400 rounded-md shadow-md overflow-hidden'>
+		<div className='group relative w-60 h-[450px] m-2 bg-amber-500 rounded-md shadow-md overflow-hidden'>
 			<img
 				className='w-max'
 				src={img_API + filme.poster_path}
@@ -13,7 +19,8 @@ function Card({ filme, handleAddCart, handleAddFavs }) {
 			/>
 			<div className='font-poppins flex justify-between p-2 items-center text-slate-100'>
 				<h3 className='font-semibold text-left'>{filme.title}</h3>
-				<span className='backdrop-contrast-50 rounded-md shadow-md m-1 p-1'>
+				<span
+					className={`font-bold rounded-md shadow-md m-1 p-1 text-white ${color}`}>
 					{filme.vote_average}
 				</span>
 			</div>
@@ -35,7 +42,7 @@ function Card({ filme, handleAddCart, handleAddFavs }) {
 					</h1>
 					<button
 						type='button'
-						className='w-full block mt-2 px-4 py-2 bg-sky-600 text-white font-medium text-xs leading-normal uppercase rounded shadow-md hover:bg-sky-700 hover:shadow-lg focus:bg-sky-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-sky-800 active:shadow-lg transition duration-150 ease-in-out flex justify-around align-center'
+						className='w-full block mt-2 px-4 py-2 bg-amber-600 text-white font-medium text-xs leading-normal uppercase rounded shadow-md hover:bg-amber-700 hover:shadow-lg focus:bg-amber-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-amber-800 active:shadow-lg transition duration-150 ease-in-out flex justify-around align-center'
 						onClick={() => {
 							handleAddCart(filme);
 							toast.success('Adicionado ao carrinho!');
