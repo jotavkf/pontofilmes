@@ -11,11 +11,13 @@ function Checkout() {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		if (cart.length === 0) {
-			navigate('/');
-		} else {
-			setIsLoading(false);
-		}
+		setTimeout(() => {
+			if (cart.length === 0) {
+				navigate('/');
+			} else {
+				setIsLoading(false);
+			}
+		}, 3000);
 	}, [cart, navigate]);
 
 	return (

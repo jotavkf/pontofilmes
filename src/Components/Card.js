@@ -6,8 +6,8 @@ function Card({ filme, handleAddCart, handleAddFavs }) {
 
 	let color;
 
-	if (filme.vote_average > 8) color = 'bg-green-700';
-	else if (filme.vote_average > 6) color = 'bg-orange-500';
+	if (filme.vote_average >= 8) color = 'bg-green-700';
+	else if (filme.vote_average >= 6) color = 'bg-orange-500';
 	else color = 'bg-red-700';
 
 	return (
