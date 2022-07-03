@@ -4,6 +4,7 @@ import { CartProvider } from './Contexts/CartContext';
 import Home from './Pages/Home.js';
 import Checkout from './Pages/Checkout.js';
 import Page404 from './Pages/404';
+import Idfilme from './Pages/Idfilme';
 
 function App() {
 	return (
@@ -12,6 +13,7 @@ function App() {
 				<Routes>
 					<Route path='/' element={<Home />} />
 					<Route path='/checkout' element={<Checkout />} />
+					<Route path='/movie/:id' element={<Idfilme />} />
 					<Route path='*' element={<Page404 />} />
 				</Routes>
 			</CartProvider>

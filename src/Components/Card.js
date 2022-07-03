@@ -17,7 +17,7 @@ function Card({ filme, handleAddCart, handleAddFavs }) {
 				src={img_API + filme.poster_path}
 				alt={filme.title}
 			/>
-			<div className='font-poppins flex justify-between p-2 items-center text-slate-100'>
+			<div className='font-poppins flex justify-between p-2 h-[90px] items-center text-slate-100'>
 				<h3 className='font-semibold text-left'>{filme.title}</h3>
 				<span
 					className={`font-bold rounded-md shadow-md m-1 p-1 text-white ${color}`}>
