@@ -17,7 +17,7 @@ function Checkout() {
 			} else {
 				setIsLoading(false);
 			}
-		}, 3000);
+		}, 2000);
 	}, [cart, navigate]);
 
 	return (
