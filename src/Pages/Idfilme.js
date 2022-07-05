@@ -33,7 +33,7 @@ function Idfilme() {
 			}
 		}
 		fetchPelaId();
-	}, [isLoading, params.id]);
+	}, [isLoading, params.id, filmePelaId]);
 
 	return (
 		<>
