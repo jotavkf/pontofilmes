@@ -1,6 +1,6 @@
 import { ShoppingCartIcon, HeartIcon } from '@heroicons/react/solid';
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 function Card({ filme, handleAddCart, handleAddFavs }) {
 	const img_API = `https://image.tmdb.org/t/p/w1280`;
