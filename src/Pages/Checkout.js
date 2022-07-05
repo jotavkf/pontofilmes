@@ -25,7 +25,7 @@ function Checkout() {
 		<>
 			{isLoading && <Spinner />}
 			{!isLoading && (
-				<div className='h-full w-full bg-slate-200 md:h-screen md:w-screen'>
+				<div className='h-full w-full bg-slate-200 sm:h-screen sm:w-screen'>
 					<Toaster />
 					<div className='py-5 px-5'>
 						<div className='bg-gray-100 p-10 rounded-md shadow-md w-full'>

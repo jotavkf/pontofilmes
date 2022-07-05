@@ -75,7 +75,6 @@ function Home() {
 				fetchFilmes={fetchFilmes}
 				className='sticky top-0'
 			/>
-			<Toaster />
 			<div className='relative flex flex-wrap justify-center items-center'>
 				{filmes.map((filme) => {
 					return (
@@ -87,6 +86,7 @@ function Home() {
 						/>
 					);
 				})}
+				<Toaster position='bottom-center' />
 				{isVisibleSearch && (
 					<div
 						className='fixed inset-0 backdrop-contrast-50 flex items-center align-center justify-center'

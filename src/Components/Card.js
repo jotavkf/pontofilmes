@@ -1,5 +1,6 @@
 import { ShoppingCartIcon, HeartIcon } from '@heroicons/react/solid';
 import toast from 'react-hot-toast';
+import { Link } from 'react-router-dom';
 
 function Card({ filme, handleAddCart, handleAddFavs }) {
 	const img_API = `https://image.tmdb.org/t/p/w1280`;
@@ -39,6 +40,13 @@ function Card({ filme, handleAddCart, handleAddFavs }) {
 							}}>
 							<HeartIcon className='h-4 w-4' />
 						</button>
+						<Link to={`/movie/${filme.id}`}>
+							<button
+								type='button'
+								className='text-white underline font-medium underline-offset-1'>
+								Detalhes
+							</button>
+						</Link>
 					</h1>
 					<button
 						type='button'
