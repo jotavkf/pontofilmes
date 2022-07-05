@@ -31,6 +31,13 @@ function Card({ filme, handleAddCart, handleAddFavs }) {
 					{filme.overview}
 					<h1 className='font-bold text-left my-4 flex justify-between'>
 						Preço: R$ 79
+						<Link to={`/movie/${filme.id}`}>
+							<button
+								type='button'
+								className='text-white underline font-medium underline-offset-1'>
+								Detalhes
+							</button>
+						</Link>
 						<button
 							type='button'
 							className='text-red-400'
@@ -40,13 +47,6 @@ function Card({ filme, handleAddCart, handleAddFavs }) {
 							}}>
 							<HeartIcon className='h-4 w-4' />
 						</button>
-						<Link to={`/movie/${filme.id}`}>
-							<button
-								type='button'
-								className='text-white underline font-medium underline-offset-1'>
-								Detalhes
-							</button>
-						</Link>
 					</h1>
 					<button
 						type='button'
