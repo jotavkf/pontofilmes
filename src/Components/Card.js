@@ -1,5 +1,6 @@
 import { ShoppingCartIcon, HeartIcon } from '@heroicons/react/solid';
 import toast from 'react-hot-toast';
+import { Link } from 'react-router-dom';
 
 function Card({ filme, handleAddCart, handleAddFavs }) {
 	const img_API = `https://image.tmdb.org/t/p/w1280`;
@@ -17,7 +18,7 @@ function Card({ filme, handleAddCart, handleAddFavs }) {
 				src={img_API + filme.poster_path}
 				alt={filme.title}
 			/>
-			<div className='font-poppins flex justify-between p-2 items-center text-slate-100'>
+			<div className='font-poppins flex justify-between p-2 h-[90px] items-center text-slate-100'>
 				<h3 className='font-semibold text-left'>{filme.title}</h3>
 				<span
 					className={`font-bold rounded-md shadow-md m-1 p-1 text-white ${color}`}>
@@ -30,6 +31,13 @@ function Card({ filme, handleAddCart, handleAddFavs }) {
 					{filme.overview}
 					<h1 className='font-bold text-left my-4 flex justify-between'>
 						Preço: R$ 79
+						<Link to={`/movie/${filme.id}`}>
+							<button
+								type='button'
+								className='text-white underline font-medium underline-offset-1'>
+								Detalhes
+							</button>
+						</Link>
 						<button
 							type='button'
 							className='text-red-400'
